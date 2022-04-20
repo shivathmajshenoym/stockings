@@ -55,6 +55,9 @@ gem 'jquery-rails'
 
 gem 'stock_quote', '~> 3.0'
 
+gem 'devise', '~> 4.8', '>= 4.8.1' 
+#we just installed devise user management system
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
