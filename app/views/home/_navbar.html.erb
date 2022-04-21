@@ -17,7 +17,11 @@
          <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link" %>
         </li>
         <li class="nav-item">
+<<<<<<< HEAD
          <%= button_to "Logout", destroy_user_session_path,method: :delete, class:"nav-link" %>
+=======
+         <%= link_to "Logout", destroy_user_session_path,method::delete, class:"nav-link" %>
+>>>>>>> 8564430c1ae82eb5ebf83ffb5cbe7029a1fd41f7
         </li>
 
         <%else  %>

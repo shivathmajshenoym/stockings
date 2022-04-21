@@ -90,6 +90,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+<<<<<<< HEAD
   config.action_mailer.default_url_options = { host: 'https://stockmarketapp-project.herokuapp.com/', port: 3000 }
+=======
+  config.action_mailer.default_url_options = { host: 'https://stockmarketapp-project.herokuapp.com/' }
+>>>>>>> 8564430c1ae82eb5ebf83ffb5cbe7029a1fd41f7
   
 end
