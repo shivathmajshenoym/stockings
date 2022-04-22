@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Stocks</h1>
+
+<div id="stocks">
+  <% @stocks.each do |stock| %>
+    <% if stock.user_id == current_user.id #here we compare devise variable with our variable id our logic%>
+    <%= render stock %>
+    <p>
+      <%= link_to "Show this stock", stock %>
+    </p>
+
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to "New stock", new_stock_path %>
