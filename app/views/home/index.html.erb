@@ -1,19 +1,18 @@
 <h1>STOCK STATUS </h1>
 
-<%= form_tag root_path, :method=> 'POST' do%>
+<%= form_tag root_path, :method=> 'get' do%>
 <%= text_field_tag 'ticker', nil,placeholder:" Enter Ticket Symbol",size: 50%>
 <%=submit_tag 'Lookup'%>
 <%end%>
 
 
 
-<% if $stock%>
-    <%= $stock.company_name%>
+<% if @stock%>
+    <%= @stock.company_name%>
     <br/>
-    <%= $stock.latest_price%> <%="$"%>
+    <%= @stock.latest_price%> 
     
-<%elsif $nothing%>
-    <%=$nothing%>
+
 
 <%end%>
 
