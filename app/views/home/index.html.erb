@@ -10,7 +10,7 @@
 <% if @stock%>
     <%= @stock.company_name%>
     <br/>
-    <%= @stock.latest_price%> 
+    <%= number_to_currency(@stock.latest_price, :unit => "$")%> 
     
 
 

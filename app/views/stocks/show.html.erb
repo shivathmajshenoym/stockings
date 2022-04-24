@@ -1,5 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<% @api=StockQuote::Stock.new(api_key: 'pk_2d81e1c9af5e46c185143d326e904153') %>
 
+<% @ticker = StockQuote::Stock.quote(@stock.ticker) %>
+
+<% @logo = StockQuote::Stock.logo(@stock.ticker)%>
+        <img src="<%= @logo.url %>"><br/><br/>
+
+          <h2><%= @ticker.company_name %></h2><br/>
+          Ticker Symbol: <%= @ticker.symbol %><br/>
+          Current Price: <%= number_to_currency(number_with_precision(@ticker.latest_price, :precision => 2, :delimiter => ','),:unit=>"$") %><br/>
+
+          Previous Close: <%= number_to_currency(number_with_precision(@ticker.previous_close, :precision => 2, :delimiter => ','),:unit=>"$") %><br/>
+
+          Percent Change: <%= @ticker.change_percent %><br/>
+
+          YTD Change: <%= number_with_precision(@ticker.ytd_change, :precision => 2, :delimiter => ',') %>%<br/>
+	                    
+          Market Cap: <%= number_to_currency(number_with_precision(@ticker.market_cap, :precision => 2, :delimiter => ','),:unit=>"$") %><br/>
 <%= render @stock %>
 
 <div>

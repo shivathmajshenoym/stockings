@@ -1,17 +1,64 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Stocks</h1>
 
-<div id="stocks">
-  <% @stocks.each do |stock| %>
-    <% if stock.user_id == current_user.id #here we compare devise variable with our variable id our logic%>
-    <%= render stock %>
-    <p>
-      <%= link_to "Show this stock", stock %>
-    </p>
 
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Company</th>
+      <th>Ticker</th>
+      <th>Current Price</th>
+      <th>Market Cap</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <% if stock.user_id == current_user.id %>
+        
+    <% @ticker = StockQuote::Stock.quote(stock.ticker) %>
+      <% if !@ticker %>
+        <tr>
+          <td><%= link_to "Error", stock %></td>
+          <td><%= stock.ticker %></td>
+          <td>N/A</td>
+          
+          <td>N/A</td>
+
+
+          <td><center><%= link_to 'Edit', edit_stock_path(stock) %></center></td>
+          <td><center><%= link_to 'Delete', stock, method: :delete, data: { confirm: 'Are you sure?' } %></center></td>
+        </tr>
+      <% else %>
+        <tr>
+          <td><%= link_to @ticker.company_name, stock %></td>
+          <td><%= @ticker.symbol %></td>
+          <td>$<%= number_with_precision(@ticker.latest_price, :precision => 2, :delimiter => ',') %></td>
+          
+          <td>$<%= number_with_precision(@ticker.market_cap, :precision => 2, :delimiter => ',') %></td>
+
+
+          <td><center><%= link_to 'Edit', edit_stock_path(stock) %></center></td>
+          <td><center><%= button_to 'Destroy', stock, method: :delete %></center></td>
+        </tr>
+      
+      <% end %>
+
+          
+
+        
+
+
+
+
+
+        
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </tbody>
+</table>
 
-<%= link_to "New stock", new_stock_path %>
+<br>
+
+<%= link_to 'New Stock', new_stock_path %>

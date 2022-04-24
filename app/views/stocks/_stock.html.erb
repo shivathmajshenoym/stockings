@@ -1,8 +1,25 @@
 <div id="<%= dom_id stock %>">
-  <p>
-    <strong>Ticker:</strong>
-    <%= stock.ticker %>
-  </p>
+  
+  
+  <strong> <th>Company Name:</th> </strong>
+  <strong> <th>Ticker:</th> </strong>
+  <strong> <th>Current Price</th> </strong>
+
+  <br/>
+
+  <tr>
+
+     <td><%= @ticker.company_name %></td> 
+     <td><%= @ticker.symbol %></td>
+    <td><%= number_to_currency(number_with_precision(@ticker.latest_price,:precision=>2,:delimiter=>','), :unit => "$") %></td>
+    
+    <td><%= link_to "Show", @stock %></td> 
+    <td><%= link_to "Edit", edit_stock_path(@stock) %></td>
+    <td><%= link_to "Destroy", stock,method: :delete,data:{confirm: 'Are you Sure?'} %></td>
+    <br/>
+
+    
+  </tr>
 
 
 </div>
